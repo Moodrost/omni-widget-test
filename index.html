@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="referrer" content="no-referrer">
+    <title>Омни — тестовый web-чат</title>
+    <link rel="stylesheet" href="./styles.css">
+    <script src="./config.js" defer></script>
+    <script src="./test-page.js" defer></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="./" aria-label="Омни, тестовая страница">билайн бизнес <span>Омни</span></a>
+      <span class="environment">Тестовая страница</span>
+    </header>
+    <main>
+      <section class="intro" aria-labelledby="page-title">
+        <h1 id="page-title">Проверим web-чат</h1>
+        <p class="lead">Подключите виджет, напишите сообщение и проверьте, что ответ вернулся в чат, а диалог появился в рабочем месте Омни.</p>
+        <div class="actions">
+          <button id="check" class="primary" type="button">Проверить подключение</button>
+          <button id="load" class="secondary" type="button" disabled>Загрузить виджет</button>
+        </div>
+        <div class="connection-state" role="status" aria-live="polite" aria-atomic="true">
+          <p id="status-title" class="status-title">Готово к проверке</p>
+          <p id="status-detail">Сначала проверим доступность виджета для этой страницы.</p>
+        </div>
+      </section>
+      <section class="test-guide" aria-labelledby="guide-title">
+        <h2 id="guide-title">Как проверить диалог</h2>
+        <ol>
+          <li>Загрузите виджет и откройте чат в углу страницы.</li>
+          <li>Отправьте короткое сообщение с уникальной пометкой, например «Проверка виджета, 14:30».</li>
+          <li>Найдите этот диалог в Омни и проверьте фактический ответ в виджете.</li>
+        </ol>
+        <p class="note">Появление окна чата ещё не подтверждает, что агент отвечает. Проверка подключения сама по себе сообщение не отправляет.</p>
+      </section>
+      <details class="diagnostics">
+        <summary>Данные подключения</summary>
+        <dl>
+          <div><dt>Адрес сайта для настройки виджета</dt><dd><code id="origin"></code></dd></div>
+          <div><dt>Канал</dt><dd><span id="channel-name"></span></dd></div>
+          <div><dt>Время последней проверки</dt><dd><span id="checked-at">Проверка ещё не запускалась</span></dd></div>
+          <div><dt>Ответ сервера</dt><dd><span id="http-status">Проверка ещё не запускалась</span></dd></div>
+        </dl>
+        <p>Для подключения разрешите этот адрес сайта в настройках виджета. Укажите схему, домен и порт, без пути страницы.</p>
+      </details>
+    </main>
+    <footer>Страница подключает существующий dev-виджет Space. Настройки канала меняются в системе управления.</footer>
+  </body>
+</html>
