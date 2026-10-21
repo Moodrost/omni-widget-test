@@ -101,7 +101,10 @@
     setStatus("Загружаем виджет", "Ожидаем окно чата от dev-сервиса.");
     const script = document.createElement("script");
     script.id = "omni-test-sdk";
-    script.src = config.sdkUrl;
+    const sdkUrl = new URL(config.sdkUrl);
+    // Leave the old, long-lived cache entry once; reuse this URL for revalidation.
+    sdkUrl.searchParams.set("omni_loader", "revalidate-v1");
+    script.src = sdkUrl.toString();
     script.async = true;
     script.dataset.key = config.publicKey;
     script.dataset.channelId = config.channelId;
