@@ -49,7 +49,7 @@
           ? "Сервер отказал в доступе. Проверьте, что этот адрес сайта разрешён и развёртывание виджета активно."
           : response.status === 404
             ? "Виджет выключен или ключ не найден. Проверьте включение канала и актуальный код вставки в Space."
-            : "Сервер не вернул настройки. Повторите проверку и проверьте dev-сервис.";
+            : "Сервер не вернул настройки. Повторите проверку и проверьте доступность сервиса.";
         setStatus("Виджет пока недоступен", explanation, true);
         return;
       }
@@ -58,7 +58,7 @@
         payload = await response.json();
         if (!payload || typeof payload !== "object" || Array.isArray(payload)) throw new Error("Invalid config");
       } catch {
-        setStatus("Сервер вернул некорректные настройки", "HTTP-запрос прошёл, но конфигурацию не удалось прочитать. Повторите проверку или проверьте dev-сервис.", true);
+        setStatus("Сервер вернул некорректные настройки", "HTTP-запрос прошёл, но конфигурацию не удалось прочитать. Повторите проверку или проверьте доступность сервиса.", true);
         return;
       }
       if (payload.channel_id && payload.channel_id !== config.channelId) {
@@ -98,7 +98,7 @@
     loading = true;
     loadButton.disabled = true;
     checkButton.disabled = true;
-    setStatus("Загружаем виджет", "Ожидаем окно чата от dev-сервиса.");
+    setStatus("Загружаем виджет", "Ожидаем окно чата.");
     const script = document.createElement("script");
     script.id = "omni-test-sdk";
     const sdkUrl = new URL(config.sdkUrl);
