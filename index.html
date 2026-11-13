@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="referrer" content="no-referrer">
     <title>Омни — тестовый web-чат</title>
-    <link rel="stylesheet" href="./styles.css">
-    <script src="./config.js?v=prod-3401d3e1-v1" defer></script>
-    <script src="./test-page.js?v=prod-v1" defer></script>
+    <link rel="stylesheet" href="./styles.css?v=paste-v1">
+    <script src="./embed-config.js?v=paste-v1" defer></script>
+    <script src="./test-page.js?v=paste-v1" defer></script>
   </head>
   <body>
     <header class="site-header">
@@ -17,14 +17,21 @@
     <main>
       <section class="intro" aria-labelledby="page-title">
         <h1 id="page-title">Проверим web-чат</h1>
-        <p class="lead">Подключите виджет, напишите сообщение и проверьте, что ответ вернулся в чат, а диалог появился в рабочем месте Омни.</p>
+        <p class="lead">Вставьте код из вкладки «Виджет на сайт» нужного канала. Менять файлы или обновлять репозиторий больше не нужно.</p>
+        <div class="embed-form">
+          <label for="embed-code">Код интеграции</label>
+          <textarea id="embed-code" rows="5" spellcheck="false" autocomplete="off" autocapitalize="off" aria-describedby="embed-help" placeholder="Вставьте целиком &lt;script …&gt;&lt;/script&gt;"></textarea>
+          <p id="embed-help" class="note">Код сохранится только в этом браузере. Нужен публичный код виджета, без API-токенов и паролей.</p>
+          <p class="note">Канал должен быть включён. В разрешённых адресах сайтов укажите <code id="allowed-origin"></code>.</p>
+        </div>
         <div class="actions">
           <button id="check" class="primary" type="button">Проверить подключение</button>
           <button id="load" class="secondary" type="button" disabled>Загрузить виджет</button>
+          <button id="reset" class="secondary" type="button">Сменить подключение</button>
         </div>
         <div class="connection-state" role="status" aria-live="polite" aria-atomic="true">
-          <p id="status-title" class="status-title">Готово к проверке</p>
-          <p id="status-detail">Сначала проверим доступность виджета для этой страницы.</p>
+          <p id="status-title" class="status-title">Вставьте код интеграции</p>
+          <p id="status-detail">Затем нажмите «Проверить подключение». Виджет загрузится только по вашей команде.</p>
         </div>
       </section>
       <section class="test-guide" aria-labelledby="guide-title">
@@ -41,12 +48,13 @@
         <dl>
           <div><dt>Адрес сайта для настройки виджета</dt><dd><code id="origin"></code></dd></div>
           <div><dt>Канал</dt><dd><span id="channel-name"></span></dd></div>
+          <div><dt>Адрес API</dt><dd><code id="api-url">Не задан</code></dd></div>
           <div><dt>Время последней проверки</dt><dd><span id="checked-at">Проверка ещё не запускалась</span></dd></div>
           <div><dt>Ответ сервера</dt><dd><span id="http-status">Проверка ещё не запускалась</span></dd></div>
         </dl>
         <p>Для подключения разрешите этот адрес сайта в настройках виджета. Укажите схему, домен и порт, без пути страницы.</p>
       </details>
     </main>
-    <footer>Страница подключает production-виджет Space. Настройки канала меняются в системе управления.</footer>
+    <footer>Страница проверяет виджет из вашего кода интеграции. Включение канала и маршрутизация настраиваются в Омни.</footer>
   </body>
 </html>
